@@ -7,7 +7,7 @@ class Maze_bfs_solving:
         self.A_y = None
         self.B_x = None
         self.B_y = None
-        self.size = 120 
+        self.size = 6
         self.visited = None
         self.parent = None
         self.step = None
@@ -19,7 +19,7 @@ class Maze_bfs_solving:
         self.maze = np.random.randint(0,2, size = (self.size,self.size))
         cond1 = self.maze > 0
         self.maze = np.where(cond1, 'x', 'o')
-        random_indexing = list(map(int, np.random.randint(0,12, size = (1,4))[0]))
+        random_indexing = list(map(int, np.random.randint(0,self.size, size = (1,4))[0]))
         self.A_x, self.A_y, self.B_x, self.B_y = map(int, random_indexing)
         self.maze[self.A_x, self.A_y] = 'A'
         self.maze[self.B_x, self.B_y] = 'B'

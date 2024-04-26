@@ -6,6 +6,7 @@ using namespace std;
 
 //Cho luoi o vuong voi cac duong di duoc va khong di duoc
 //Ap dung bfs dfs
+//nxn -> (2n+1)x(2n+1)
 int n, m, s, t, u, v;
 char a[1001][1001];
 bool visited[1001][1001];
