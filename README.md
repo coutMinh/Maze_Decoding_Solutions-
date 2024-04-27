@@ -5,5 +5,5 @@
 
 Problem: Find the path in the given maze for Tom to catch Jerry
 
-![Problem](image/Screenshot 2024-04-27 155025.png)
+![Problem](image/img2.png)
 

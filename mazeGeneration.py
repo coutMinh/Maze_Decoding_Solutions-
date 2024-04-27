@@ -12,7 +12,7 @@ class mazeGeneration:
         self.parent = None
         self.dx = [-2, 0, 0 ,2]
         self.dy = [0, -2, 2, 0]
-        self.size = 55
+        self.size = 13
         self.visited = None
 
     def createMaze(self):
