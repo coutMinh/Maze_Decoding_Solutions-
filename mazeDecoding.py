@@ -66,8 +66,8 @@ class Maze_bfs_solving:
         else: print("Khong co duong di tu A den B") 
         print(self.step[self.B_x, self.B_y])
         return way
-A = Maze_bfs_solving()
-A.Bfs()
-path = A.Truyvet()
-generator.matrix_pygame(path)
+# A = Maze_bfs_solving()
+# A.Bfs()
+# path = A.Truyvet()
+# generator.matrix_pygame(path)
 

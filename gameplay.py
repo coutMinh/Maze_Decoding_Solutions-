@@ -1,30 +1,37 @@
-import pygame
 import random
-from pygame.locals import *
+import pygame
 import mazeGeneration as mg
+from pygame.locals import *
+
 class game:
     def __init__(self) -> None:
         self.screen = None
         self.size = None
         self.matrix = None
+        
+
     def creatingMaze(self):
         generator = mg.mazeGeneration()
         self.matrix = generator.createMaze()
         self.size = len(self.matrix)
         WHITE = (255, 255, 255)
         BLACK = (0, 0, 0)
+
         # Kích thước của mê cung và các ô
         rows = self.matrix.shape[0]
         cols = self.matrix.shape[1]
         # Chia tỷ lệ kích thước ô để hiển thị trên màn hình
         scale_factor = 2
         cell_size = 30 // scale_factor  # Thu nhỏ kích thước của ô
+
         # Khởi tạo Pygame
         pygame.init()
 
         # Kích thước cửa sổ
-        window_size = ((cols) * cell_size, (rows) * cell_size)
+        infoObject = pygame.display.Info()
+        window_size = (infoObject.current_w - 30, infoObject.current_h - 50)
         self.screen = pygame.display.set_mode(window_size)
+
         pygame.display.set_caption("Maze")
         cell_width = self.screen.get_width() // cols
         cell_height = self.screen.get_height() // rows
@@ -35,12 +42,13 @@ class game:
         for i in range(rows):
             for j in range(cols):
                 color = BLACK if self.matrix[i][j] == 'x' else WHITE
-                pygame.draw.rect(self.screen, color, (j * cell_size, i * cell_size, cell_size, cell_size))
+                pygame.draw.rect(self.screen, color, (j * cell_size + (self.screen.get_width() - cols * cell_size) // 2, i * cell_size + (self.screen.get_height() - rows * cell_size) // 2, cell_size, cell_size))
         # Hiển thị mê cung
         pygame.display.flip()
+
     def mazeSolving(self):
         self.creatingMaze()
-        player_x, player_y = 1, 1 
+        player_x, player_y = 1, 1
         WHITE = (255, 255, 255)
         BLACK = (0, 0, 0)
         RED = (255, 0, 0)
@@ -50,8 +58,8 @@ class game:
         scale_factor = 2
         cell_size = 30 // scale_factor  # Thu nhỏ kích thước của ô
         while loop2:
-            for event in pygame.event.get(): 
-                if event.type == pygame.QUIT: 
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     loop2 = False
                 elif event.type == pygame.KEYDOWN:
                     passx, passy = player_x, player_y
@@ -74,8 +82,10 @@ class game:
                                 color = RED
                             else:
                                 color = WHITE
-                            pygame.draw.rect(self.screen, color, (j * cell_size, i * cell_size, cell_size, cell_size))
+                            pygame.draw.rect(self.screen, color, (j * cell_size + (self.screen.get_width() - cols * cell_size) // 2, i * cell_size + (self.screen.get_height() - rows * cell_size) // 2, cell_size, cell_size))
                     pygame.display.flip()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button==1:
+                        x1,y1=event.pos
+                        print("Chuot trai duoc nhan tai vi tri: ",event.pos)
         pygame.quit()
-A = game()
-A.mazeSolving()
