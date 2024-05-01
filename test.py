@@ -34,5 +34,6 @@ while(Q):
             if(step[newi, newj] > step[u] + w):
                 step[newi, newj] = step[u] + w
                 pq.heappush(Q, (step[newi, newj], (newi, newj)))
+
 print(step)
                 

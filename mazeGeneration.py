@@ -41,3 +41,41 @@ class mazeGeneration:
             if(s1 >= 0 and s1 < self.size and t1 >= 0 and t1 < self.size and self.visited[s1,t1] == False and self.maze[s1, t1] == 'o'):
                 self.parent[s1, t1] = (s, t)
                 self.dfs(s1, t1)
+    def matrix_pygame(self, path):
+            WHITE = (255, 255, 255)
+            BLACK = (0, 0, 0)
+            # Kích thước của mê cung và các ô
+            rows = self.maze.shape[0]
+            cols = self.maze.shape[1]
+            # Chia tỷ lệ kích thước ô để hiển thị trên màn hình
+            scale_factor = 2
+            cell_size = 30 // scale_factor  # Thu nhỏ kích thước của ô
+            # Khởi tạo Pygame
+            pygame.init()
+            # Kích thước cửa sổ
+            window_size = ((cols) * cell_size, (rows) * cell_size)
+            screen = pygame.display.set_mode(window_size)
+            pygame.display.set_caption("Maze")
+            # Màu nền
+            screen.fill(WHITE)
+            # Vẽ mê cung từ ma trận
+            for i in range(rows):
+                for j in range(cols):
+                    color = BLACK if self.maze[i][j] == 'x' else WHITE
+                    pygame.draw.rect(screen, color, (j * cell_size, i * cell_size, cell_size, cell_size))
+            pygame.display.flip()
+            # Vòng lặp chính
+            running = True
+            while running:
+                # Vẽ đường đi
+                for i in range(len(path) - 1):
+                    start = (path[i][1] * cell_size + cell_size // 2, path[i][0] * cell_size + cell_size // 2)
+                    end = (path[i + 1][1] * cell_size + cell_size // 2, path[i + 1][0] * cell_size + cell_size // 2)
+                    pygame.draw.line(screen, (255, 0, 0), start, end, 3)
+                pygame.display.flip()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+            # Cập nhật màn hình
+            # Kết thúc Pygame
+            pygame.quit()

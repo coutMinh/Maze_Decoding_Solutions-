@@ -1,6 +1,7 @@
 import numpy as np
 import mazeGeneration as mg
-
+import time
+start_time = time.time()
 generator = mg.mazeGeneration()
 matrix = generator.createMaze()
 
@@ -66,8 +67,9 @@ class Maze_bfs_solving:
         else: print("Khong co duong di tu A den B") 
         print(self.step[self.B_x, self.B_y])
         return way
-# A = Maze_bfs_solving()
-# A.Bfs()
-# path = A.Truyvet()
-# generator.matrix_pygame(path)
+A = Maze_bfs_solving()
+A.Bfs()
+path = A.Truyvet()
+print("Process finished --- %s seconds ---" % (time.time() - start_time))
+generator.matrix_pygame(path)
 
