@@ -9,25 +9,23 @@ generator = mg.mazeGeneration()
 matrix = generator.createMaze()
 class maze_dijkstra_solving:
     def __init__(self) -> None:
-        self.maze = generator.maze.copy()
+        self.maze = matrix.copy()
         self.A_x = None
         self.A_y = None
         self.B_x = None
         self.B_y = None
-        self.size = generator.size
+        self.size = mg.size
         self.visited = None
         self.parent = None
         self.step = None
     def creatingInfo(self):
         self.parent = np.array([[None for i in range(self.size)] for j in range(self.size)])
         self.step = np.array([[INF for i in range(self.size)] for j in range(self.size)])
-        self.A_x, self.A_y = 1, 1
-        self.B_x, self.B_y = generator.size - 2 , generator.size - 2
-        self.maze[self.A_x, self.A_y] = 'A'
-        self.maze[self.B_x, self.B_y] = 'B'
+        self.A_x, self.A_y = 0, 0
+        self.B_x, self.B_y = self.size - 1 , self.size - 1
     def Dijkstra(self):
-        dx = [-1, 0, 0, 1]
-        dy = [0, -1, 1, 0]   
+        dx = [1, 0, -1, 0]
+        dy = [0, 1, 0, -1]
         self.creatingInfo()     
         self.step[self.A_x, self.A_y] = 0
         Q = []
@@ -44,14 +42,14 @@ class maze_dijkstra_solving:
                 newj = j + dy[k] 
                 w = None
                 if(newi >= 0 and newi < self.size) and (newj < self.size and newj >= 0) :
-                    if(self.maze[newi, newj] == 'x'):
+                    if(self.maze[i][j][k] == 1):
                         w = INF
                     else: w = 1
-                if(self.step[newi, newj] > self.step[u] + w):
-                    self.step[newi, newj] = self.step[u] + w
-                    self.parent[newi, newj] = u
-                    pq.heappush(Q, (self.step[newi, newj], (newi, newj)))
-            if(self.maze[u] == 'B'):
+                    if(self.step[newi, newj] > self.step[u] + w):
+                        self.step[newi, newj] = self.step[u] + w
+                        self.parent[newi, newj] = u
+                        pq.heappush(Q, (self.step[newi, newj], (newi, newj)))
+            if(newi == self.B_x and newj == self.B_y):
                 break
     def Truyvet(self):
         u, v = self.B_x, self.B_y
@@ -72,4 +70,4 @@ A = maze_dijkstra_solving()
 A.Dijkstra()
 path = A.Truyvet()
 print("Process finished --- %s seconds ---" % (time.time() - start_time))
-generator.matrix_pygame(path)
+mg.mazeApplication(matrix, path)

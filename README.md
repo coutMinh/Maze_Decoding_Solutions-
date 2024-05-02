@@ -7,3 +7,7 @@ Problem: Find the path in the given maze for Tom to catch Jerry
 
 ![Problem](image/img2.png)
 
+Solved image
+
+![Problem](image/dijsktra.png)
+
