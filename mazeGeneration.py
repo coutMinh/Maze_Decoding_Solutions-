@@ -1,11 +1,13 @@
 import random
 import pygame
 import numpy as np
-size = 45
+
+size = 15 # size 15x15
 cell_size = 15  # Kích thước của mỗi ô trong mê cung
 screen_width, screen_height = 1200, 900 #1200, 900
 screen = pygame.display.set_mode((screen_width, screen_height))
 white, black = (255, 255, 255), (0, 0, 0)
+
 class mazeGeneration:
 
     def __init__(self) -> None:

@@ -2,7 +2,7 @@ import pygame
 white = (255, 255, 255)
 black=(0,0,0)
 def draw_rectangle(x, y,width,text):
-    screen = pygame.display.set_mode((1200, 696)) 
+    screen = pygame.display.set_mode((1300, 696)) 
     font = pygame.font.Font(None, 36)
     white = (255, 255, 255)
     black = (0, 0, 0)
