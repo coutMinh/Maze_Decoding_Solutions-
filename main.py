@@ -2,7 +2,7 @@ import pygame
 import random
 from pygame.locals import *
 import function as fc
-import gameplay
+from gameplay import game
 def menu():
     pygame.init() 
     # displaying Canvas (960*600) 
